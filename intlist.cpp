@@ -11,11 +11,49 @@ using std::cout;
 // copy constructor
 IntList::IntList(const IntList& source) {
     //IMPLEMENT THIS
+
+    //copy empty list
+    if(!source.head){
+        head = nullptr;
+        tail = nullptr;
+        return;
+    }
+
+    //copy list with stuff
+    head = new Node();
+    head->next = nullptr;
+    head->info = source.head->info;
+    tail = head;
+
+    Node* previous = head;
+    Node* sourceTraverse = source.head;
+
+    sourceTraverse = sourceTraverse->next;
+
+    while(sourceTraverse){
+        Node* newNode = new Node();
+        previous->next = newNode;
+        newNode->next = nullptr;
+        newNode->info = sourceTraverse->info;
+
+        tail = newNode;
+        previous = previous->next;
+
+        sourceTraverse = sourceTraverse->next;
+    }
 }
 
 // destructor deletes all nodes
 IntList::~IntList() {
-    //IMPLEMENT THIS
+    while(head){
+        Node* victim = head;
+        head = head->next;
+
+        delete victim;
+    }
+
+    head = nullptr;
+    tail = nullptr;
 }
 
 
@@ -108,6 +146,8 @@ void IntList::push_back(int value) {
     }
 
     tail->next = newNode;
+
+    tail = newNode;
  
 }
 
