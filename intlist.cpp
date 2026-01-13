@@ -21,28 +21,68 @@ IntList::~IntList() {
 
 // return sum of values in list
 int IntList::sum() const {
-    return 0; // REPLACE THIS NON-SOLUTION
+    int sum = 0;
+
+    Node* traverse = head;
+
+    while(traverse){
+        sum += traverse->info;
+        traverse = traverse->next;
+    }
+    
+    return sum; // REPLACE THIS NON-SOLUTION
 }
 
 // returns true if value is in the list; false if not
 bool IntList::contains(int value) const {
+    Node* traverse = head;
+
+    while(traverse){
+        if(traverse->info == value){
+            return true;
+        }
+
+        traverse = traverse->next;
+    }
+
     return false; // REPLACE THIS NON-SOLUTION
 }
 
 // returns maximum value in list, or 0 if empty list
 int IntList::max() const {
-    return 0; // REPLACE THIS NON-SOLUTION
+    if(!head){
+        return 0;
+    }
+
+    int max = head->info;
+
+    Node* traverse = head;
+
+    while(traverse){
+        if(traverse->info > max){
+            max = traverse->info;
+        }
+
+        traverse = traverse->next;
+    }
+
+    return max;
 }
 
 // returns average (arithmetic mean) of all values, or
 // 0 if list is empty
 double IntList::average() const {
-    return 0.0; // REPLACE THIS NON-SOLUTION
+    if(!head){
+        return 0;
+    }
+
+    return sum() / count();
 }
 
 // inserts value as new node at beginning of list
 void IntList::push_front(int value) {
     // IMPLEMENT
+    
     Node* newNode = new Node;
     newNode->info = value;
     newNode->next = head;
@@ -57,14 +97,34 @@ void IntList::push_front(int value) {
 void IntList::push_back(int value) {
     // IMPLEMENT
 
+    Node* newNode = new Node;
+    newNode->info = value;    
+    newNode->next = nullptr;
 
+    if(!head){
+        head = newNode;
+        tail = newNode;
+        return;
+    }
+
+    tail->next = newNode;
  
 }
 
 // return count of values
 int IntList::count() const {
    //IMPLEMENT THIS
-   return 0;
+
+    int numValues = 0;
+
+    Node* traverse = head;
+
+    while(traverse){
+        numValues++;
+        traverse = traverse->next;
+    }
+
+   return numValues;
 }
 
 
