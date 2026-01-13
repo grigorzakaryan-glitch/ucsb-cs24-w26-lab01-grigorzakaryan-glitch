@@ -114,7 +114,10 @@ double IntList::average() const {
         return 0;
     }
 
-    return sum() / count();
+    // double sum = sum();
+    // double count = count();
+
+    return sum() / (double)count();
 }
 
 // inserts value as new node at beginning of list
