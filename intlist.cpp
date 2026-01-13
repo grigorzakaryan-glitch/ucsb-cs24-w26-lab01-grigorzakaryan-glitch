@@ -172,6 +172,9 @@ int IntList::count() const {
 //to this list, deleting/replacing any existing nodes
 IntList& IntList::operator=(const IntList& source){
     //IMPLEMENT
+    if(this == &source){
+        return *this;
+    }
 
     while(head){
         Node* victim = head;
