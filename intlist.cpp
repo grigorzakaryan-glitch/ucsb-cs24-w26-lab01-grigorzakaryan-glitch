@@ -117,6 +117,8 @@ double IntList::average() const {
     // double sum = sum();
     // double count = count();
 
+    //dont' have to do that, just cast the denominator to a double
+
     return sum() / (double)count();
 }
 
